@@ -5,18 +5,14 @@ Science Fair Passion Project for Extraterrestrial Habitat Research
 #### General Info
 - Language: Python
 - IDE: VSCode & Jupyter Notebook
-
 #### Containerization
 - Docker
-
 #### Machine Learning Model
 - PyTorch
-
 #### Data Visualization
 - TQDM
 - Plotly
 - MatPlotLib
-
 #### Automation & Hardware
 - PlatformIO
 - ROS
@@ -24,7 +20,6 @@ Science Fair Passion Project for Extraterrestrial Habitat Research
 - RViz
 - Moveelt
 - YOLOv8
-
 #### Simulation & Computations
 - Gazebo
 - NumPy
