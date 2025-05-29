@@ -4,7 +4,6 @@ Science Fair Passion Project for Extraterrestrial Habitat Research
 ### Tech Stack
 #### General Info
 - Language: Python
-- IDE: VSCode & Jupyter Notebook
 #### Containerization
 - Docker
 #### Machine Learning Model
