@@ -1,28 +1,36 @@
-# For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python:3-slim
+# ─────────────────────────────────────────────────────────────────────
+# ROS 2 (Humble) + Python ML/AI stack for AERIS
+# ─────────────────────────────────────────────────────────────────────
+FROM ros:humble
 
-# Open port 5000
-EXPOSE 5000
-ENV key=value
-# Keeps Python from generating .pyc files in the container
-ENV PYTHONDONTWRITEBYTECODE=1
-# Turns off buffering for easier container logging
-ENV PYTHONUNBUFFERED=1
+# ───── System Environment ────────────────────────────────────────────
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    ROS_DOMAIN_ID=0 \
+    RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 
-ENV ROS_DOMAIN_ID=0
-ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+# ───── Install OS dependencies ───────────────────────────────────────
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-pip python3-colcon-common-extensions python3-rospy \
+    libglib2.0-0 libsm6 libxrender1 libxext6 libgl1 ffmpeg \
+    build-essential curl git wget unzip lsb-release \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install pip requirements
-COPY requirements.txt .
-RUN python -m pip install -r requirements.txt
+# ───── Upgrade pip and install Python dependencies ───────────────────
+COPY requirements.txt /tmp/requirements.txt
+RUN python3 -m pip install --upgrade pip && \
+    python3 -m pip install --no-cache-dir -r /tmp/requirements.txt
 
+# ───── Setup workspace ───────────────────────────────────────────────
 WORKDIR /app
 COPY . /app
 
-# Creates a non-root user with an explicit UID and adds permission to access the /app folder
-# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
-RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+# ───── Add non-root user for safety ──────────────────────────────────
+RUN useradd -ms /bin/bash appuser && chown -R appuser /app
 USER appuser
 
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["python", "AERIS\main.py"]
+# ───── Source ROS 2 setup and run Python ─────────────────────────────
+SHELL ["/bin/bash", "-c"]
+CMD source /opt/ros/humble/setup.bash && python3 main.py
+
