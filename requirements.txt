@@ -1,16 +1,34 @@
 # To ensure app dependencies are ported from your virtual environment/host machine into your container, run 'pip freeze > requirements.txt' in the terminal to overwrite this file
 
 # Machine Learning
-torch
-torchvision
-torchaudio
+torch                   # Core PyTorch library for building/training models
+torchvision             # Image transformations + pretrained vision models
+torchaudio              # Optional, may be used later
+scipy                   # SciPy numerical tools - signal processing & optimization
 
-# Data Vis.
-tqdm
-plotly
-matplotlib
+# Data Visualization
+tqdm                    # Progress Bars
+plotly                  # Interactive plotting (good for Jupyter dashboards)
+matplotlib              # Static Plotting and Charts for Paper
+pandas                  # Data wrangling, logs, CSVs
+pyyaml                  # Easy config file management
 
 # Simulation & Computations
-numpy
-opencv-python
-ultralytics # for YOLOv8
+numpy                   # Essential matrix math
+ultralytics             # YOLOv8 object detection framework
+imutils                 # Handy image functions: resize and rotate
+
+# Microcontroller Communication + GPIO
+pyserial                # Serial communication with Arduino (via USB/Serial)
+paho-mqtt               # MQTT communication - publish/subscribe (robot coordination)
+RPi.GPIO                # Legacy pin control on Raspberry Pi
+gpiozero                # Easier wrapper for RPi.GPIO
+pigpio                  # More accurate servo timing via daemon
+
+# Research Logging
+wandb                   # Weights & Biases: experiment tracking and visual logging
+
+# Vision
+picamera2               # Modern camera interface for Pi OS Bullseye & Bookworm
+opencv-python           # Core image processing
+opencv-contrib-python   # Extended modules like ArUco markers, face recognition
