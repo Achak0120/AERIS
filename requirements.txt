@@ -29,6 +29,6 @@ pigpio                  # More accurate servo timing via daemon
 wandb                   # Weights & Biases: experiment tracking and visual logging
 
 # Vision
-#picamera2               # Modern camera interface for Pi OS Bullseye & Bookworm, not working on windows, TRY AGAIN LATER
+picamera2               # Modern camera interface for Pi OS Bullseye & Bookworm, not working on windows, TRY AGAIN LATER
 opencv-python           # Core image processing
 opencv-contrib-python   # Extended modules like ArUco markers, face recognition
