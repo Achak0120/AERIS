@@ -21,10 +21,14 @@ imutils                 # Handy image functions: resize and rotate
 # Microcontroller Communication + GPIO
 pyserial                # Serial communication with Arduino (via USB/Serial)
 paho-mqtt               # MQTT communication - publish/subscribe (robot coordination)
+RPi.GPIO                # Legacy pin control on Raspberry Pi
+gpiozero                # Easier wrapper for RPi.GPIO
+pigpio                  # More accurate servo timing via daemon
 
 # Research Logging
 wandb                   # Weights & Biases: experiment tracking and visual logging
 
 # Vision
+picamera2               # Modern camera interface for Pi OS Bullseye & Bookworm, not working on windows, TRY AGAIN LATER
 opencv-python           # Core image processing
 opencv-contrib-python   # Extended modules like ArUco markers, face recognition
