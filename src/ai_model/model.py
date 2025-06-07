@@ -13,7 +13,7 @@ val_path = r'C:/Users/achak/OneDrive/Desktop/rover/AERIS/src/DATA FOLDER/raw/ima
 
 # Image transforms
 transform = transforms.Compose([
-    transforms.Resize((224, 224)), 
+    transforms.Resize((224, 224)),
     transforms.ToTensor(),
 ])
 
