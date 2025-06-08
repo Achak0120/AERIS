@@ -1,26 +1,15 @@
 import cv2
-import numpy as np
 
-capture = cv2.VideoCapture(0)
-if not capture.isOpened():
-    print("Cannot open camera...")
-    exit()
-while True():
-    # Frame by frame
-    ret, frame = capture.read()
-
-    if not ret:
-        print("Cannot recieve frame (stream end?). Exiting...")
-        break
-
-    # Frame operations
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-    # Display frame
-    cv2.imshow('frame', gray)
-    if cv2.waitKey(1) == ord('q'):
-        break
-
-# When all done, release capture
-capture.release()
-cv2.destroyAllWindows()
+for device_id in range(0, 10):
+    cap = cv2.VideoCapture(device_id)
+    if cap.isOpened():
+        ret, frame = cap.read()
+        if ret:
+            print(f'Successfully grabbed frame from /dev/video{device_id}')
+            cv2.imshow('test', frame)
+            cv2.waitKey(3000)
+            cap.release()
+            cv2.destroyAllWindows()
+            break
+        cap.release()
+print("Done checking devices")
