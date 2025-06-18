@@ -18,14 +18,12 @@ train_no_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" 
 val_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" / "val" / "blue_cube"
 val_no_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" / "val" / "no_cube"
 
-
 # Image Transformations
 # Define the transformations to resize, normalize (optional), and convert images to tensors
 transformation = transforms.Compose([
     transforms.Resize((224,224)),
     transforms.ToTensor(),
 ])
-
 
 
 # Load Datasets
