@@ -1,46 +1,85 @@
+
+# Imports
+# Import torch, torchvision, nn, optim, transforms, DataLoader, and any other necessary libraries
 import torch
-from torch import nn
-from torch import optim
+import torch.nn as nn
+import torch.optim as optim
 from torchvision import datasets, transforms
-from torch.utils.data import DataLoader
-import matplotlib.pyplot as plt
-from torchvision.datasets import ImageFolder
-
-#Load image files
-train_path = r'C:/Users/achak/OneDrive/Desktop/rover/AERIS/src/DATA FOLDER/raw/images/cubes_dset/train'
-val_path = r'C:/Users/achak/OneDrive/Desktop/rover/AERIS/src/DATA FOLDER/raw/images/cubes_dset/val'
+from torch.utils.data import DataLoader, Dataset
 
 
-# Image transforms
-transform = transforms.Compose([
-    transforms.Resize((224, 224)),
+# File Paths
+# Define the paths to the training and validation image folders
+train_blue_cube = r"C:/Users/Aishik C/Desktop/AERIS/AERIS/src/DATA FOLDER/raw/images/cubes_dset/train/blue_cube"
+train_no_blue_cube = r"C:/Users/Aishik C/Desktop/AERIS/AERIS/src/DATA FOLDER/raw/images/cubes_dset/train/no_cube"
+
+val_blue_cube = r"C:/Users/Aishik C/Desktop/AERIS/AERIS/src/DATA FOLDER/raw/images/cubes_dset/val/blue_cube"
+val_no_blue_cube = r"C:/Users/Aishik C/Desktop/AERIS/AERIS/src/DATA FOLDER/raw/images/cubes_dset/val/no_cube"
+
+
+# Image Transformations
+# Define the transformations to resize, normalize (optional), and convert images to tensors
+transformation = transforms.Compose([
+    transforms.Resize((224,224)),
     transforms.ToTensor(),
 ])
 
-traindata = ImageFolder(train_path, transform=transform)
-valdata = ImageFolder(val_path, transform=transform)
 
 
-# Dataloaders
-train_loader = DataLoader(traindata, batch_size=5, shuffle=True)
-val_loader = DataLoader(valdata, batch_size=5, shuffle=False)
+# Load Datasets
 
-# collect batch
-dataiter = iter(train_loader)
-images, labels = next(dataiter)
+# Use ImageFolder to load training and validation datasets with transformations
 
 
-# Model Infrastructure
-class RoverCNN(nn.Module):
-    def __init__(self):
-        super().__init__()
+# Create Dataloaders
 
-        self.conv1 = nn.Conv2d(3, 16, 3)
-        self.maxpool = nn.MaxPool2d(2)
-        self.conv2 = nn.Conv2d(16, 32, 3)
-        self.maxpool2 = nn.MaxPool2d(2)
-        self.conv3 = nn.Conv2d(32, 64, 3)
-        self.maxpool3 = nn.MaxPool2d(2)
+# Use DataLoader to create train_loader and val_loader with appropriate batch sizes and shuffling
 
-    def forward(self, x):
-        pass
+
+# Visualize a Sample Batch (Optional)
+
+# Get a batch of training data to visualize and verify dataset loading (optional step)
+
+
+# Define CNN Model Class
+
+# Create a class that extends nn.Module
+# Define convolutional layers, activation functions, and pooling layers in __init__
+# Define the forward method to connect all layers sequentially
+# Add a classifier with at least one hidden linear layer and an output layer sized to num_classes
+
+
+# Instantiate the Model
+
+# Create an instance of the model and pass the number of output classes
+
+
+# Define Loss Function and Optimizer
+
+# Choose a suitable loss function like CrossEntropyLoss
+# Choose an optimizer like Adam or SGD
+
+
+# Training Loop
+
+# Loop over multiple epochs
+# For each epoch, loop through train_loader
+# In each batch: zero gradients, forward pass, compute loss, backpropagate, optimizer step
+# Optionally print training progress and loss
+
+
+# Validation Loop
+
+# After each epoch (or at the end), run model in evaluation mode
+# Loop through val_loader without gradient calculation
+# Compute accuracy or other metrics
+
+
+# Save Trained Model (Optional)
+
+# Save the model state_dict for later use
+
+
+# Load Model (Optional)
+
+# Load the saved model weights if needed in a separate script
