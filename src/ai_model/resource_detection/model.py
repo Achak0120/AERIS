@@ -3,6 +3,7 @@
 # Import torch, torchvision, nn, optim, transforms, DataLoader, and any other necessary libraries
 import torch
 import torch.nn as nn
+from pathlib import Path
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, Dataset
@@ -10,11 +11,12 @@ from torch.utils.data import DataLoader, Dataset
 
 # File Paths
 # Define the paths to the training and validation image folders
-train_blue_cube = r"C:/Users/Aishik C/Desktop/AERIS/AERIS/src/DATA FOLDER/raw/images/cubes_dset/train/blue_cube"
-train_no_blue_cube = r"C:/Users/Aishik C/Desktop/AERIS/AERIS/src/DATA FOLDER/raw/images/cubes_dset/train/no_cube"
+base_dir = Path(__file__).parent
+train_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" / "train" / "blue_cube"
+train_no_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" / "train" / "no_cube"
 
-val_blue_cube = r"C:/Users/Aishik C/Desktop/AERIS/AERIS/src/DATA FOLDER/raw/images/cubes_dset/val/blue_cube"
-val_no_blue_cube = r"C:/Users/Aishik C/Desktop/AERIS/AERIS/src/DATA FOLDER/raw/images/cubes_dset/val/no_cube"
+val_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" / "val" / "blue_cube"
+val_no_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" / "val" / "no_cube"
 
 
 # Image Transformations
