@@ -3,7 +3,6 @@
 # Import torch, torchvision, nn, optim, transforms, DataLoader, and any other necessary libraries
 import torch
 import torch.nn as nn
-from pathlib import Path
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, Dataset
@@ -11,12 +10,11 @@ from torch.utils.data import DataLoader, Dataset
 
 # File Paths
 # Define the paths to the training and validation image folders
-base_dir = Path(__file__).parent
-train_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" / "train" / "blue_cube"
-train_no_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" / "train" / "no_cube"
+train_blue_cube = r"AERIS/src/DATA FOLDER/raw/images/cubes_dset/train/blue_cube"
+train_no_blue_cube =r"AERIS/src/DATA FOLDER/raw/images/cubes_dset/train/no_cube"
 
-val_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" / "val" / "blue_cube"
-val_no_blue_cube = base_dir / "DATA FOLDER" / "raw" / "images" / "cubes_dset" / "val" / "no_cube"
+val_blue_cube =r"AERIS/src/DATA FOLDER/raw/images/cubes_dset/val/blue_cube"
+val_no_blue_cube =r"AERIS/src/DATA FOLDER/raw/images/cubes_dset/val/no_cube"
 
 # Image Transformations
 # Define the transformations to resize, normalize (optional), and convert images to tensors
@@ -26,23 +24,34 @@ transformation = transforms.Compose([
 ])
 
 
-# Load Datasets
-
+# Load Datasets - Training & Validation
 # Use ImageFolder to load training and validation datasets with transformations
+train_dataset = datasets.ImageFolder(
+    root="AERIS/src/DATA FOLDER/raw/images/cubes_dset/train",
+    transform=transformation
+)
 
+val_dataset = datasets.ImageFolder(
+    root ="AERIS/src/DATA FOLDER/raw/images/cubes_dset/val",
+    transform=transformation
+)
 
 # Create Dataloaders
-
 # Use DataLoader to create train_loader and val_loader with appropriate batch sizes and shuffling
+train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=4, shuffle=True)
+val_loader = torch.utils.data.DataLoader(val_dataset, batch_size=4, shuffle=True)
 
+# Visualize a Sample Batch (Optional) --> Skipped
 
-# Visualize a Sample Batch (Optional)
-
-# Get a batch of training data to visualize and verify dataset loading (optional step)
+# Get a batch of training data to visualize and verify dataset loading (optional step) --> Skipped
 
 
 # Define CNN Model Class
-
+class DetectCNN(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+        self.conv1 = nn.Conv2d()
+        
 # Create a class that extends nn.Module
 # Define convolutional layers, activation functions, and pooling layers in __init__
 # Define the forward method to connect all layers sequentially
