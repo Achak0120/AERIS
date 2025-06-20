@@ -53,7 +53,7 @@ print(f"Using {device} device")
 
 # Define CNN Model Class
 class DetectCNN(nn.Module):
-    def __init__(self) -> None:
+    def __init__(self, num_classes) -> None:
         super(DetectCNN, self).__init__()
         # Layer 1
         self.conv1 = nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, stride=1, padding=1, bias=True)
@@ -70,7 +70,7 @@ class DetectCNN(nn.Module):
         self.dropout2 = nn.Dropout(p=0.5)
         
         self.flatten = nn.Flatten()
-        self.linear = nn.Linear(in_features=200704, out_features=1)
+        self.linear = nn.Linear(in_features=200704, out_features=num_classes)
 # Create a class that extends nn.Module
 # Define convolutional layers, activation functions, and pooling layers in __init__
 # Define the forward method to connect all layers sequentially
@@ -94,10 +94,9 @@ class DetectCNN(nn.Module):
 
 
 # Instantiate the Model
-model = DetectCNN().to(device)
-print(model)
 # Create an instance of the model and pass the number of output classes
-
+num_classes = 2
+model = DetectCNN(num_classes=num_classes).to(device)
 
 # Define Loss Function and Optimizer
 
